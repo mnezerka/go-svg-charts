@@ -20,6 +20,10 @@ const tpl = `
 	</body>
 </html>`
 
+const COL_GREEN = "#9f9"
+const COL_RED = "#f99"
+const COL_BLUE = "#99f"
+
 func check(err error) {
 	if err != nil {
 		log.Fatal(err)
@@ -38,11 +42,30 @@ func main() {
 		Items: []string{
 			timestatus.Render(
 				1000,
-				[]timestatus.Item{
-					{Date: time.Now().Add(-24 * time.Hour), Color: "#f00"},
-					{Date: time.Now().Add(-48 * time.Hour), Color: "#0f0"},
-					{Date: time.Now().Add(-130 * time.Hour), Color: "#00f"},
-					{Date: time.Now().Add(-140 * time.Hour), Color: "#f00"},
+				[]timestatus.Row{
+					{
+						Name: "Zero row",
+						Items: []timestatus.Item{
+							{Time: time.Now().Add(-24 * time.Hour), Color: COL_RED},
+						},
+					},
+
+					{
+						Name: "First row",
+						Items: []timestatus.Item{
+							{Time: time.Now().Add(-24 * time.Hour), Color: COL_RED, Label: "2-4"},
+							{Time: time.Now().Add(-48 * time.Hour), Color: COL_GREEN, Label: "2-3"},
+							{Time: time.Now().Add(-130 * time.Hour), Color: COL_BLUE, Label: "2-2"},
+							{Time: time.Now().Add(-140 * time.Hour), Color: COL_BLUE, Label: "2-1"},
+						},
+					},
+					{
+						Name: "Second row",
+						Items: []timestatus.Item{
+							{Time: time.Now().Add(-24 * time.Hour), Color: COL_GREEN},
+							{Time: time.Now().Add(-150 * time.Hour), Color: COL_RED},
+						},
+					},
 				},
 			),
 		},
