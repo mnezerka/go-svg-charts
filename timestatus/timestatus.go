@@ -173,7 +173,10 @@ func Render(rows []Row, config Config) string {
 	// let's add 1/10 of total range at the beginning (before first item)
 	start = start.Add(-1 * total_range / 10)
 
-	result += fmt.Sprintf(`<svg width="%d" height="110">`, config.Width)
+	result += fmt.Sprintf(
+		`<svg width="%d" height="%d">`,
+		config.Width,
+		(config.ItemHeight+config.ItemBorder)*len(rows)+config.ItemHeight*2)
 
 	for i := 0; i < len(rows); i++ {
 		result += render_row(config, start, end, rows[i], i*config.ItemHeight)
