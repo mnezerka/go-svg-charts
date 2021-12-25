@@ -2,10 +2,11 @@ package main
 
 import (
 	"log"
-	"mnezerka/go-svg-charts/timestatus"
 	"os"
 	"text/template"
 	"time"
+
+	"github.com/mnezerka/go-svg-charts/timestatus"
 )
 
 const tpl = `
